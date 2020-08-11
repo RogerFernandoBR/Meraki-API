@@ -3,22 +3,22 @@
 const User = require('../models/class');
 
 module.exports = {
-    async index(req, res) {
-    },
+  async index(req, res) {
+  },
 
-    async show(req, res) {
+  async show(req, res) {
 
-    },
+  },
 
-    async store(req, res) {
+  async store(req, res) {
 
-    },
+  },
 
-    async update(req, res) {
+  async update(req, res) {
 
-    },
+  },
 
-    async destroy(req, res) {
+  async destroy(req, res) {
 
-    }
-}
+  },
+};

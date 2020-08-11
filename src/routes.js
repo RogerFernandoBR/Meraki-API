@@ -1,6 +1,7 @@
 const express = require('express');
 const userController = require('./controllers/userController');
 const authController = require('./controllers/authController');
+
 const routes = express.Router();
 
 // Auth routes
@@ -16,4 +17,3 @@ routes.delete('/users/:id', userController.destroy);
 // Course routes
 
 module.exports = routes;
-
