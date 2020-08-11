@@ -1,0 +1,54 @@
+# Meraki API
+
+This is an API for Meraki app.
+Meraki app is a stream online courses plataform.
+
+Observation: The app is still being developing. So, it has some functionalities not implemented.
+
+## Installation
+
+Clone the repository using the command below:
+(Make sure you go to the correct folder on terminal before execute this command. Just to avoid copy files in an unwanted place).
+```console
+git clone git@github.com:RogerFernandoBR/Meraki-API.git.
+
+```
+Then, go to the Meraki-API folder with the command below:
+```console
+cd Meraki-API
+```
+Now it's time to install the project dependencies.
+```console
+yarn install
+
+```
+Or...
+```console
+npm install
+
+```
+You are ready to use/test the Meraki-API!
+## Usage
+First, you need to get the server up.
+Run the following command for that:
+```console
+npm run dev
+```
+To use the API, you must call some specific route from API.
+Inside the project folder there are a script called "routes.js" that has all of the availables routes to use.
+```console
+Meraki-API/src/routes.js
+```
+I also put insede the test folder, two files:
+```console
+Meraki-API/test/Insomnia_meraki.json
+```
+And...
+```console
+Meraki-API/test/Insomnia-All.har
+```
+Both are the same tests.
+You can import which one you prefer in your favorite tool to test calls to APIs like Postman or Insomnia (I really recommend Insomnia).
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
