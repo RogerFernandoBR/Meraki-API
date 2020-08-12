@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const ClassSchema = new Schema({
+const LessonSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -25,8 +25,14 @@ const ClassSchema = new Schema({
     required: true,
   },
   author: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
+    required: true,
+  },
+  course: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Course',
+    required: true,
   },
   status: {
     type: Number,
@@ -42,4 +48,4 @@ const ClassSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('Class', ClassSchema);
+module.exports = mongoose.model('Lesson', LessonSchema);
