@@ -4,11 +4,8 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
 module.exports = {
-  async index(req, res) {
 
-  },
-
-  async show(req, res) {
+  async logIn(req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) return res.send({ error: 'Dados insuficientes!' });
@@ -28,14 +25,4 @@ module.exports = {
     }
   },
 
-  async store(req, res) {
-  },
-
-  async update(req, res) {
-
-  },
-
-  async destroy(req, res) {
-
-  },
 };

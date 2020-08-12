@@ -7,7 +7,7 @@ const lessonController = require('./controllers/lessonController');
 const routes = express.Router();
 
 // Auth routes
-routes.post('/auth', authController.show);
+routes.post('/auth', authController.logIn);
 
 // User routes
 routes.get('/users', userController.index);
