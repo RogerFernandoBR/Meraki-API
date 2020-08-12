@@ -5,7 +5,7 @@ const Course = require('../models/course');
 module.exports = {
   async index(req, res) {
     try {
-      const courses = await Course.find({});
+      const courses = await Course.find({}).populate('author');
       return res.send(courses);
     } catch (err) {
       return res.send(err.errors);
@@ -18,7 +18,7 @@ module.exports = {
     if (!id) return res.send({ error: 'Dados insuficientes' });
 
     try {
-      const course = await Course.findById(id);
+      const course = await Course.findById(id).populate('author');
       if (!course) return res.send({ error: 'Curso não encontrado!' });
       return res.send(course);
     } catch (err) {
@@ -34,7 +34,8 @@ module.exports = {
     if (!name || !description || !thumbnail || !author) return res.send({ error: 'Dados insuficientes!' });
 
     try {
-      const course = await Course.create(req.body);
+      let course = await Course.create(req.body);
+      course = await course.populate('author').execPopulate();
       course.password = undefined;
       return res.send(course);
     } catch (err) {
@@ -50,7 +51,7 @@ module.exports = {
     try {
       let course = await Course.findById(id);
       if (!course) return res.send({ error: 'Curso não existe na base!' });
-      course = await Course.findByIdAndUpdate(id, req.body, { new: true });
+      course = await Course.findByIdAndUpdate(id, req.body, { new: true }).populate('author');
       return res.send(course);
     } catch (err) {
       return res.send(err.errors);
@@ -65,8 +66,8 @@ module.exports = {
     try {
       let course = await Course.findById(id);
       if (!course) return res.send({ error: 'Curso não existe na base!' });
-      course = await Course.findByIdAndDelete(id);
-      return res.send({ message: 'Curso excluído!' });
+      course = await Course.findByIdAndDelete(id).populate('author');
+      return res.send({ message: 'Curso excluído!', data: course });
     } catch (err) {
       return res.send(err.errors);
     }

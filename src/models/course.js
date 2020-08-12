@@ -20,7 +20,7 @@ const CourseSchema = new Schema({
     default: 1,
   },
   author: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
