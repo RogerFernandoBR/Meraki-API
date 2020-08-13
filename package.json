@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
-    "lint": "npx eslint . --ext .js --ignore-pattern node_modules"
+    "lint": "npx eslint . --ext .js --ignore-pattern node_modules",
+    "lintFix": "npx eslint . --ext .js --fix --ignore-pattern node_modules"
   },
   "repository": "git@github.com:RogerFernandoBR/Meraki-API.git",
   "author": "Roger Fernando <rogerfernandodeoliveira@gmail.com>",
