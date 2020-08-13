@@ -1,10 +1,10 @@
 const express = require("express");
 
-const authController = require("./controllers/authController");
-const userController = require("./controllers/userController");
-const courseController = require("./controllers/courseController");
-const lessonController = require("./controllers/lessonController");
-const subscriptionController = require("./controllers/subscriptionController");
+const authController = require("../src/controllers/authController");
+const userController = require("../src/controllers/userController");
+const courseController = require("../src/controllers/courseController");
+const lessonController = require("../src/controllers/lessonController");
+const subscriptionController = require("../src/controllers/subscriptionController");
 
 const routes = express.Router();
 
