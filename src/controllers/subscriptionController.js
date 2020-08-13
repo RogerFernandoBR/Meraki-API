@@ -1,6 +1,6 @@
 // Subscription controller basics methods: index, show, store, update, destroy
 
-const Subscription = require("../models/subscription");
+const Subscription = require("../models/subscriptionSchema");
 
 module.exports = {
     async index(req, res) {

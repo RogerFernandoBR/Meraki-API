@@ -1,6 +1,6 @@
 // Lesson controller basics methods: index, show, store, update, destroy
 
-const Lesson = require("../models/lesson");
+const Lesson = require("../models/lessonSchema");
 
 module.exports = {
     async index(req, res) {

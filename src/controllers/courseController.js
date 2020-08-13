@@ -1,6 +1,6 @@
 // Course controller basics methods: index, show, store, update, destroy
 
-const Course = require("../models/course");
+const Course = require("../models/courseSchema");
 
 module.exports = {
     async index(req, res) {

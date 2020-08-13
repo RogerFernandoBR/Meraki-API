@@ -1,6 +1,6 @@
 // User controller basics methods: index, show, store, update, destroy
 
-const User = require("../models/user");
+const User = require("../models/userSchema");
 
 module.exports = {
     async index(req, res) {
