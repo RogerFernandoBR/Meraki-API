@@ -1,7 +1,7 @@
 // Auth controller basics methods: index, show, store, update, destroy
 
 const bcrypt = require("bcrypt");
-const User = require("../models/userSchema");
+const User = require("../models/schemas/userSchema");
 
 module.exports = {
 

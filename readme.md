@@ -54,6 +54,10 @@ Run the following command for that:
 ```console
 npm run dev
 ```
+Or
+```console
+yarn start
+```
 To use the API, you must call some specific route from API.
 Inside the project folder there are a script called "routes.js" that has all of the availables routes to use.
 ```console

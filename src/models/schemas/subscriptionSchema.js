@@ -6,21 +6,23 @@ const SubscriptionSchema = new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true
+        required: [true, "O usuário é obrigatório!"]
     },
     course: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Course",
-        required: true
+        required: [true, "O curso é obrigatório!"]
     },
     lesson: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Lesson",
-        required: true
+        required: [true, "A aula é obrigatória!"]
     },
     status: {
         type: Number,
-        default: 1
+        default: 1,
+        min: [0, "Status invalido!"],
+        max: [3, "Status invalido!"]
     },
     currentTime: {
         type: Number,
