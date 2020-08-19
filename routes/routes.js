@@ -1,15 +1,20 @@
 const express = require("express");
 
-const authController = require("../src/controllers/authController");
+const sessionController = require("../src/controllers/sessionController");
 const userController = require("../src/controllers/userController");
 const courseController = require("../src/controllers/courseController");
 const lessonController = require("../src/controllers/lessonController");
 const subscriptionController = require("../src/controllers/subscriptionController");
 
+const authMiddleware = require("../src/middlewares/authMiddleware");
+
 const routes = express.Router();
 
 // Auth routes
-routes.post("/auth", authController.logIn);
+routes.post("/sessions", sessionController.store);
+
+// Use the auth middleware to above routes
+routes.use(authMiddleware);
 
 // User routes
 routes.get("/users", userController.index);
