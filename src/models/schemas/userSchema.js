@@ -23,6 +23,10 @@ const UserSchema = new Schema({
         required: [true, "A senha é obrigatória!"],
         select: false
     },
+    avatar: {
+        type: String,
+        required: false
+    },
     type: {
         type: Number,
         default: 1

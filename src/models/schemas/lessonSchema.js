@@ -24,7 +24,7 @@ const LessonSchema = new Schema({
         type: String,
         required: [true, "O endereço é obrigatório!"]
     },
-    thumbnail: {
+    thumb: {
         type: String,
         required: [true, "A imagem é obrigatória!"]
     },

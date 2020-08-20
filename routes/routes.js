@@ -5,8 +5,10 @@ const userController = require("../src/controllers/userController");
 const courseController = require("../src/controllers/courseController");
 const lessonController = require("../src/controllers/lessonController");
 const subscriptionController = require("../src/controllers/subscriptionController");
+const fileController = require("../src/controllers/fileController");
 
 const authMiddleware = require("../src/middlewares/authMiddleware");
+const uploadMiddleware = require("../src/middlewares/uploadMiddleware");
 
 const routes = express.Router();
 
@@ -43,5 +45,8 @@ routes.post("/subscriptions", subscriptionController.store);
 routes.get("/subscriptions/:id", subscriptionController.show);
 routes.put("/subscriptions/:id", subscriptionController.update);
 routes.delete("/subscriptions/:id", subscriptionController.destroy);
+
+// File uploads
+routes.post("/files", uploadMiddleware, fileController.store);
 
 module.exports = routes;

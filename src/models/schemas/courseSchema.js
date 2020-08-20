@@ -15,7 +15,7 @@ const CourseSchema = new Schema({
         minlength: [20, "A descrição deve ter no mínimo 20 caracteres!"],
         maxlength: [250, "A descrição deve ter no máximo 250 caracteres!"]
     },
-    thumbnail: {
+    cover: {
         type: String,
         required: [true, "A imagem de capa é obrigatória!"]
     },
