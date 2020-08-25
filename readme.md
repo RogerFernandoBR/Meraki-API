@@ -47,7 +47,10 @@ Or...
 npm install
 
 ```
-You are ready to use/test the Meraki-API!
+
+Then, you need to set the enviroment variables. So, go to the clonned root folder. Inside the root folder, must have a file named ".env_sample". You need to rename this file to ".env" and fill the enviroments variables inside the file.
+
+Now you are ready to use/test the Meraki-API!
 ## Usage
 First, you need to get the server up.
 Run the following command for that:
