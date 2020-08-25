@@ -25,8 +25,8 @@ module.exports = {
 
             return res.json({
                 user,
-                token: jwt.sign({ user }, config.secret, {
-                    expiresIn: config.expiresIn
+                token: jwt.sign({ user }, config.TOKEN_SECRET, {
+                    expiresIn: config.TOKEN_EXPIRES_IN
                 })
             });
         } catch (err) {
