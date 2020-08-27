@@ -1,6 +1,8 @@
 // User controller basics methods: index, show, store, update, destroy
 
 const mongooseErrorHandler = require("mongoose-error-handler");
+const config = require("../../config/config");
+const mailer = require("../modules/mailer");
 const User = require("../models/schemas/userSchema");
 
 module.exports = {
@@ -31,6 +33,14 @@ module.exports = {
         try {
             const user = await User.create(req.body);
             user.password = undefined;
+
+            const parameters = {
+                MAIN_URL: config.MAIN_URL,
+                USER_NAME: user.name.split(" ", 1)
+            };
+
+            await mailer.sendMail(req.body.email, "welcome", "Bem vindo ao Meraki!", parameters);
+
             return res.send(user);
         } catch (err) {
             return res.status(400).send(mongooseErrorHandler.set(err));

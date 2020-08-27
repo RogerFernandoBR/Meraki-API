@@ -14,10 +14,9 @@ const uploadMiddleware = require("../src/middlewares/uploadMiddleware");
 const routes = express.Router();
 
 // Auth routes
-// routes.post("/register", authController.register);
-routes.post("/authenticate", authController.authenticate); // apenas autentica e passa o token
-routes.post("/forgot_password", authController.forgot_password); // recebe o email, valida email, grava no model o token e o empo e dispara email de recuperação de senha
-routes.post("/reset_password", authController.reset_password); // recebe o email, nova senha e token, valida e grava a nova senha do usuário
+routes.post("/authenticate", authController.authenticate);
+routes.post("/forgot_password", authController.forgot_password);
+routes.post("/reset_password", authController.reset_password);
 
 // Allow public access to assests folder
 routes.use("/static", express.static(resolve(__dirname, "..", "assets")));
