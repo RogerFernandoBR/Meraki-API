@@ -1,4 +1,4 @@
-const File = require("../models/schemas/fileSchema");
+const File = require("../models/fileSchema");
 
 module.exports = {
     async store(req, res) {

@@ -8,7 +8,7 @@ const config = require("../../config/config");
 
 const mailer = require("../modules/mailer");
 
-const User = require("../models/schemas/userSchema");
+const User = require("../models/userSchema");
 
 module.exports = {
 

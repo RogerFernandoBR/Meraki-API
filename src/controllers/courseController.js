@@ -1,7 +1,7 @@
 // Course controller basics methods: index, show, store, update, destroy
 
 const mongooseErrorHandler = require("mongoose-error-handler");
-const Course = require("../models/schemas/courseSchema");
+const Course = require("../models/courseSchema");
 
 module.exports = {
     async index(req, res) {

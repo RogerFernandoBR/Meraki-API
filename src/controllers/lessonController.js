@@ -1,7 +1,7 @@
 // Lesson controller basics methods: index, show, store, update, destroy
 
 const mongooseErrorHandler = require("mongoose-error-handler");
-const Lesson = require("../models/schemas/lessonSchema");
+const Lesson = require("../models/lessonSchema");
 
 module.exports = {
     async index(req, res) {

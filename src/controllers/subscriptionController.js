@@ -1,7 +1,7 @@
 // Subscription controller basics methods: index, show, store, update, destroy
 
 const mongooseErrorHandler = require("mongoose-error-handler");
-const Subscription = require("../models/schemas/subscriptionSchema");
+const Subscription = require("../models/subscriptionSchema");
 
 module.exports = {
     async index(req, res) {
