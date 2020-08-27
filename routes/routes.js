@@ -14,9 +14,10 @@ const uploadMiddleware = require("../src/middlewares/uploadMiddleware");
 const routes = express.Router();
 
 // Auth routes
+routes.post("/registration", authController.registration);
 routes.post("/authenticate", authController.authenticate);
-routes.post("/forgot_password", authController.forgot_password);
-routes.post("/reset_password", authController.reset_password);
+routes.post("/forgot_password", authController.forgotPassword);
+routes.post("/reset_password", authController.resetPassword);
 
 // Allow public access to assests folder
 routes.use("/static", express.static(resolve(__dirname, "..", "assets")));

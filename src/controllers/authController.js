@@ -12,6 +12,35 @@ const User = require("../models/schemas/userSchema");
 
 module.exports = {
 
+    async registration(req, res) {
+        try {
+            const user = await User.create(req.body);
+            user.password = undefined;
+
+            const token = crypto.randomBytes(3).toString("hex");
+            const expiresIn = new Date();
+            expiresIn.setHours(expiresIn.getHours() + 1);
+
+            await User.findByIdAndUpdate(user.id, {
+                $set: {
+                    passwordResetToken: token,
+                    passwordResetExpires: expiresIn
+                }
+            });
+
+            const parameters = {
+                MAIN_URL: config.MAIN_URL,
+                USER_NAME: user.name.split(" ", 1),
+                TOKEN: token
+            };
+            await mailer.sendMail(req.body.email, "registration-token", "Validação de e-email!", parameters);
+
+            return res.send(user);
+        } catch (err) {
+            return res.status(400).send(mongooseErrorHandler.set(err));
+        }
+    },
+
     async authenticate(req, res) {
         const { email, password } = req.body;
 
@@ -38,7 +67,7 @@ module.exports = {
         }
     },
 
-    async forgot_password(req, res) {
+    async forgotPassword(req, res) {
         const { email } = req.body;
 
         if (!email) return res.status(400).send({ errors: { MongoError: "E-mail não informado!" } });
@@ -64,7 +93,7 @@ module.exports = {
                 TOKEN: token
             };
 
-            const sentMail = await mailer.sendMail(email, "reset-password", "Redefinição de senha", parameters);
+            const sentMail = await mailer.sendMail(email, "password-token", "Redefinição de senha", parameters);
             if (!sentMail.sent) return res.send({ sent: false });
             return res.send({ sent: true });
         } catch (err) {
@@ -72,13 +101,13 @@ module.exports = {
         }
     },
 
-    async reset_password(req, res) {
+    async resetPassword(req, res) {
         const { email, password, token } = req.body;
         if (!email) return res.status(400).send({ errors: { MongoError: "E-mail não informado!" } });
         if (!password) return res.status(400).send({ errors: { MongoError: "Senha não informada!" } });
         if (!token) return res.status(400).send({ errors: { MongoError: "Token não informado!" } });
         try {
-            const user = await await User.findOne({ email }).select("+passwordResetToken passwordResetExpires");
+            const user = await await User.findOne({ email }).select("+passwordResetToken +passwordResetExpires");
 
             if (!user) return res.status(400).send({ errors: { MongoError: "E-mail não cadastrado!" } });
 
@@ -88,12 +117,17 @@ module.exports = {
             if (now > user.passwordResetExpires) return res.status(400).send({ errors: { MongoError: "Token expirado!" } });
 
             user.password = password;
-
+            user.passwordResetExpires = now;
             await user.save();
 
-            res.send({ success: true });
+            const parameters = {
+                MAIN_URL: config.MAIN_URL,
+                USER_NAME: user.name.split(" ", 1)
+            };
 
-            return res.send(user);
+            await mailer.sendMail(email, "reset-password-alert", "A senha de sua conta foi alterada!", parameters);
+
+            return res.send({ success: true });
         } catch (err) {
             return res.status(500).send({ error: "Erro ao autenticar usuário!" });
         }

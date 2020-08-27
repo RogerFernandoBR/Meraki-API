@@ -30,9 +30,24 @@ module.exports = {
     },
 
     async store(req, res) {
+        const { email, token } = req.body;
+
+        if (!email) return res.status(400).send({ errors: { MongoError: "E-mail não informado!" } });
+        if (!token) return res.status(400).send({ errors: { MongoError: "Token não informado!" } });
+
         try {
-            const user = await User.create(req.body);
-            user.password = undefined;
+            const user = await User.findOne({ email }).select("+passwordResetToken +passwordResetExpires");
+
+            if (!user) return res.status(400).send({ errors: { MongoError: "E-mail não cadastrado!" } });
+
+            if (token !== user.passwordResetToken) return res.status(400).send({ errors: { MongoError: "Token inválido!" } });
+
+            const now = new Date();
+            if (now > user.passwordResetExpires) return res.status(400).send({ errors: { MongoError: "Token expirado!" } });
+
+            user.emailStatus = 1;
+            user.passwordResetExpires = now;
+            await user.save();
 
             const parameters = {
                 MAIN_URL: config.MAIN_URL,

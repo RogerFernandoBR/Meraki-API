@@ -18,6 +18,11 @@ const UserSchema = new Schema({
         lowercase: true,
         match: [/^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/, "O e-mail digitado é inválido!"]
     },
+    emailStatus: {
+        type: Number,
+        require: true,
+        default: 0
+    },
     password: {
         type: String,
         required: [true, "A senha é obrigatória!"],
