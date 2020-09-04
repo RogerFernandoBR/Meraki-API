@@ -28,7 +28,7 @@ routes.post("/reset_password", authController.resetPassword);
 routes.use("/static", express.static(resolve(__dirname, "..", "assets")));
 
 // Stream routes
-routes.use("/stream", express.static(resolve(__dirname, "..", "uploads")));
+routes.get("/stream/:id", streamController.show);
 
 // Use the auth middleware to above routes
 routes.use(authMiddleware);

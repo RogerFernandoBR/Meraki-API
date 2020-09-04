@@ -8,10 +8,10 @@ const options = {
         destination: (req, file, cb) => {
             let dir = "";
 
-            if (req.body.thumb) {
-                dir = resolve(__dirname, "..", "..", "uploads", req.body.user, req.body.cover, req.body.thumb);
-            } else if (req.body.cover) {
-                dir = resolve(__dirname, "..", "..", "uploads", req.body.user, req.body.cover);
+            if (req.body.lesson) {
+                dir = resolve(__dirname, "..", "..", "uploads", req.body.user, req.body.course, req.body.lesson);
+            } else if (req.body.course) {
+                dir = resolve(__dirname, "..", "..", "uploads", req.body.user, req.body.course);
             } else if (req.body.user) {
                 dir = resolve(__dirname, "..", "..", "uploads", req.body.user);
             } else {
