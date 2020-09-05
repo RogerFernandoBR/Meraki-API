@@ -18,6 +18,11 @@ const routes = express.Router();
 // Enable Cors to all routes (Must be changed/restricted after)
 routes.use(cors());
 
+// Root route
+routes.get("/", (req, res) =>{
+    return res.send({ messege: "Você acessou o app Meraki!" });
+});
+
 // Auth routes
 routes.post("/registration", authController.registration);
 routes.post("/authenticate", authController.authenticate);
