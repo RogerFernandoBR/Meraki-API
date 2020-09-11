@@ -12,6 +12,7 @@ const streamController = require("../src/controllers/streamController");
 
 const authMiddleware = require("../src/middlewares/authMiddleware");
 const uploadMiddleware = require("../src/middlewares/uploadMiddleware");
+const tokenMiddleware = require("../src/middlewares/tokenMiddleware");
 
 const routes = express.Router();
 
@@ -32,8 +33,8 @@ routes.post("/reset_password", authController.resetPassword);
 // Allow public access to assests folder
 routes.use("/static", express.static(resolve(__dirname, "..", "assets")));
 
-// Stream routes
-routes.get("/stream/:id", streamController.show);
+// Video stream
+routes.get("/stream/:id/:authorization", tokenMiddleware, authMiddleware, streamController.stream);
 
 // Use the auth middleware to above routes
 routes.use(authMiddleware);

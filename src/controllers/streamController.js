@@ -1,10 +1,9 @@
 const fs = require("fs");
 const File = require("../models/fileSchema");
+const { index } = require("./userController");
 
 module.exports = {
-
-    async show(req, res) {
-
+    async stream(req, res) {
         // Get the file id from request
         const {
             id
@@ -63,12 +62,11 @@ module.exports = {
                     "Content-Range": `bytes ${start}-${end}/${total}`,
                     "Accept-Ranges": "bytes",
                     "Content-Length": chunksize,
-                    "Content-Type": "video/mp4"
+                    "Content-Type": "video/mkv",
                 });
 
                 // Include in the response the partial file stream
                 file.pipe(res);
-
             // If there is no range in request headers, then return all the file
             } else {
                 //Just for debuging

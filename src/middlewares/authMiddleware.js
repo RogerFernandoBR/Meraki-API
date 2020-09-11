@@ -15,6 +15,6 @@ module.exports = async (req, res, next) => {
         req.id = decoded.id;
         return next();
     } catch {
-        return res.status(401).json({ errors: { MongoError: "Token inválido!" } });
+        return res.status(400).json({ errors: { MongoError: "Token inválido!" } });
     }
 };
