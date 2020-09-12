@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Meraki</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<style>
+    body{
+        background-color: #181818;
+    }
+
+    #logo{
+        width: 150px;
+    }
+</style>
+
+<body style="text-align:center">
+    <img id="logo" src="http://localhost:3000/static/img/logoLight.png"></img>
+    <div id="video-container" style="margin:0 auto;">
+        <video id="player" controls width="640" height="auto"></video>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script>
+    
+    let url = "http://localhost:3000/stream";
+    let id = "5f5bfd8f370de02e0cb76cf4";
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsU3RhdHVzIjowLCJ0eXBlIjoxLCJzdGF0dXMiOjEsIl9pZCI6IjVmNGU1ZjUyNTNkN2JkNDc5MGU0NDkxNyIsIm5hbWUiOiJSb2dlciBGZXJuYW5kbyBkZSBPbGl2ZWlyYSBDYXJ2YWxobyIsImVtYWlsIjoicm9nZXJmZXJuYW5kb2Rlb2xpdmVpcmFAZ21haWwuY29tIiwiY3JlYXRlZCI6IjIwMjAtMDktMDFUMTQ6NDg6NTAuNzY3WiIsIl9fdiI6MH0sImlhdCI6MTU5OTQzOTkwNywiZXhwIjoxNjAwMDQ0NzA3fQ.mNK2O4Z0DoYyfc2ld3judmWKxI7jnFIdy0rqSg3xxXE";
+    
+    $(document).ready(function(){
+
+        $("#player").attr("src", `${url}/${id}/${token}`);
+
+    });
+
+</script>
+
+</html>

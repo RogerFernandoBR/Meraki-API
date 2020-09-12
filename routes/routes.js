@@ -1,6 +1,5 @@
 const express = require("express");
 const { resolve } = require("path");
-const cors = require("cors");
 
 const authController = require("../src/controllers/authController");
 const userController = require("../src/controllers/userController");
@@ -16,9 +15,6 @@ const tokenMiddleware = require("../src/middlewares/tokenMiddleware");
 
 const routes = express.Router();
 
-// Enable Cors to all routes (Must be changed/restricted after)
-routes.use(cors());
-
 // Root route
 routes.get("/", (req, res) =>{
     return res.send({ messege: "Você acessou o app Meraki!" });
@@ -33,7 +29,7 @@ routes.post("/reset_password", authController.resetPassword);
 // Allow public access to assests folder
 routes.use("/static", express.static(resolve(__dirname, "..", "assets")));
 
-// Video stream
+// Stream routes
 routes.get("/stream/:id/:authorization", tokenMiddleware, authMiddleware, streamController.stream);
 
 // Use the auth middleware to above routes

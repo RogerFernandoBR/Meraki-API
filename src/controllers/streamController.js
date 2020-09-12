@@ -21,6 +21,7 @@ module.exports = {
         try {
             // Save information abaut the file in a constant
             const stat = fs.statSync(path);
+
             // Save the total size of the file
             const total = stat.size;
 
@@ -62,7 +63,7 @@ module.exports = {
                     "Content-Range": `bytes ${start}-${end}/${total}`,
                     "Accept-Ranges": "bytes",
                     "Content-Length": chunksize,
-                    "Content-Type": "video/mkv",
+                    "Content-Type": "video/mp4",
                 });
 
                 // Include in the response the partial file stream
