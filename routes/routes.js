@@ -16,9 +16,7 @@ const tokenMiddleware = require("../src/middlewares/tokenMiddleware");
 const routes = express.Router();
 
 // Root route
-routes.get("/", (req, res) =>{
-    return res.send({ messege: "Você acessou o app Meraki!" });
-});
+routes.get("/", (req, res) => res.send({ messege: "Você acessou o app Meraki!" }));
 
 // Auth routes
 routes.post("/registration", authController.registration);
