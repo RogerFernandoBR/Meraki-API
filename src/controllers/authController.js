@@ -63,7 +63,7 @@ module.exports = {
                 })
             });
         } catch (err) {
-            return res.status(500).send({ error: "Erro ao autenticar usuário!" });
+            return res.status(500).send({ error: "Erro ao autenticar usuário!", err });
         }
     },
 
