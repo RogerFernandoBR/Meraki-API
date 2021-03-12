@@ -54,7 +54,6 @@ module.exports = {
 
             if (!validPass) return res.status(401).send({ errors: { MongoError: "Erro ao autenticar usuário!" } });
 
-            return res.status(400).send({ errors: { desc: "teste" } });
             user.password = undefined;
 
             return res.json({
