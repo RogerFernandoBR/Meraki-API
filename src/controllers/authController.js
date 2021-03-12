@@ -57,10 +57,10 @@ module.exports = {
             user.password = undefined;
 
             return res.status(200).json({
-                user
-                // token: jwt.sign({ user }, config.TOKEN_SECRET, {
-                //     expiresIn: config.TOKEN_EXPIRES_IN
-                // })
+                user,
+                token: jwt.sign({ user }, config.TOKEN_SECRET, {
+                    expiresIn: config.TOKEN_EXPIRES_IN
+                })
             });
         } catch (err) {
             return res.status(500).send({ error: "Erro ao autenticar usuário!", err });
