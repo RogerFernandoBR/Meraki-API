@@ -47,7 +47,6 @@ module.exports = {
         if (!email || !password) return res.status(400).send({ errors: { MongoError: "Dados insuficientes!" } });
 
         try {
-            if (true) return "tese";
             const user = await User.findOne({ email }).select("+password");
             if (!user) return res.status(400).send({ errors: { MongoError: "Usuário não registrado!" } });
 
@@ -63,6 +62,7 @@ module.exports = {
                     expiresIn: config.TOKEN_EXPIRES_IN
                 })
             });
+            return res.status(400).send({ errors: { desc: "teste" } });
         } catch (err) {
             return res.status(500).send({ error: "Erro ao autenticar usuário!", err });
         }
