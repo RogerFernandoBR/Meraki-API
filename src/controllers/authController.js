@@ -47,6 +47,7 @@ module.exports = {
         if (!email || !password) return res.status(400).send({ errors: { MongoError: "Dados insuficientes!" } });
 
         try {
+            if (true) return "tese";
             const user = await User.findOne({ email }).select("+password");
             if (!user) return res.status(400).send({ errors: { MongoError: "Usuário não registrado!" } });
 
