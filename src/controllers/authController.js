@@ -55,8 +55,8 @@ module.exports = {
             if (!validPass) return res.status(401).send({ errors: { MongoError: "Erro ao autenticar usuário!" } });
 
             user.password = undefined;
-            res.status(200).send({ mensagem: { desc: "tudo ok!" } });
-            return res.json({
+
+            return res.status(200).json({
                 user,
                 token: jwt.sign({ user }, config.TOKEN_SECRET, {
                     expiresIn: config.TOKEN_EXPIRES_IN
