@@ -57,7 +57,6 @@ module.exports = {
             user.password = undefined;
 
             return res.status(200).json({
-                mensagem: "teste"
                 user,
                 token: jwt.sign({ user }, config.TOKEN_SECRET, {
                     expiresIn: config.TOKEN_EXPIRES_IN
