@@ -52,6 +52,7 @@ module.exports = {
 
             const validPass = await bcrypt.compare(password, user.password);
 
+            return res.status(400).send({ errors: { desc: "teste" } });
             if (!validPass) return res.status(401).send({ errors: { MongoError: "Erro ao autenticar usuário!" } });
 
             user.password = undefined;
@@ -62,7 +63,6 @@ module.exports = {
                     expiresIn: config.TOKEN_EXPIRES_IN
                 })
             });
-            return res.status(400).send({ errors: { desc: "teste" } });
         } catch (err) {
             return res.status(500).send({ error: "Erro ao autenticar usuário!", err });
         }
