@@ -101,6 +101,26 @@ module.exports = {
         }
     },
 
+    async checkToken(req, res) {
+        const { email, token } = req.body;
+        if (!email) return res.status(400).send({ errors: { MongoError: "E-mail não informado!" } });
+        if (!token) return res.status(400).send({ errors: { MongoError: "Token não informado!" } });
+        try {
+            const user = await await User.findOne({ email }).select("+passwordResetToken +passwordResetExpires");
+
+            if (!user) return res.status(400).send({ errors: { MongoError: "E-mail não cadastrado!" } });
+
+            if (token !== user.passwordResetToken) return res.status(400).send({ errors: { MongoError: "Código inválido!" } });
+
+            const now = new Date();
+            if (now > user.passwordResetExpires) return res.status(400).send({ errors: { MongoError: "Código expirado!" } });
+
+            return res.send({ success: true });
+        } catch (err) {
+            return res.status(500).send({ error: "Erro ao validar token!" });
+        }
+    },
+
     async resetPassword(req, res) {
         const { email, password, token } = req.body;
         if (!email) return res.status(400).send({ errors: { MongoError: "E-mail não informado!" } });

@@ -22,6 +22,7 @@ routes.get("/", (req, res) => res.send({ messege: "Você acessou o app Meraki!" 
 routes.post("/registration", authController.registration);
 routes.post("/authenticate", authController.authenticate);
 routes.post("/forgot_password", authController.forgotPassword);
+routes.post("/check_token", authController.checkToken);
 routes.post("/reset_password", authController.resetPassword);
 
 // Allow public access to assests folder
