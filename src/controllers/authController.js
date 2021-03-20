@@ -104,7 +104,7 @@ module.exports = {
     async checkToken(req, res) {
         const { email, token } = req.body;
         if (!email) return res.status(400).send({ errors: { MongoError: "E-mail não informado!" } });
-        if (!token) return res.status(400).send({ errors: { MongoError: "Token não informado!" } });
+        if (!token) return res.status(400).send({ errors: { MongoError: "Código não informado!" } });
         try {
             const user = await await User.findOne({ email }).select("+passwordResetToken +passwordResetExpires");
 
